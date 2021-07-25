@@ -1,0 +1,74 @@
+﻿@model AplicCatalog.Models.Profesor
+
+@{
+    ViewBag.Title = "Adaugare Materii";
+}
+
+<h2>Adaugare Materii</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="IdProfesor" id="IdProfesor" value="@ViewBag.IdProfesor">
+  
+    <div class="form-horizontal">
+        <h4>Profesor</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+
+            @Html.Label("Nume Profesor", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model =>model.Nume, new { id = "NumeProfesor", @readonly = "readonly" })
+
+            </div>
+        </div>
+        @if (Model.Materii != null && Model.Materii.Count() > 0)
+        {
+            <script> alert("Acest profesor are deja materii asignate. Va rugam folositi Modifica materii! ")</script>
+
+        }
+        else
+        {
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <table>
+                    <tr>
+                        @{
+                            int cnt = 0;
+                            List<AplicCatalog.viewModel.MaterieAsignata> materii = ViewBag.Materii;
+
+
+                            foreach (var materie in materii)
+                            {
+                                if (cnt++ % 3 == 0)
+                                {
+                                    @:</tr><tr>
+                                 }
+                                @:<td>
+                                    <input type="checkbox"
+                                           name="selectedMaterii"
+                                           value="@materie.IdMaterie"
+                                           @(Html.Raw(materie.asignat ? "checked=\"checked\"" : "")) />
+                                        @materie.NumeMaterie
+                                        @:</td>
+                    }
+                            @:</tr>
+                        }
+                    </table>
+                </div>
+            </div>
+      
+       
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Adauga" class="btn btn-default" />
+            </div>
+        </div>
+        }
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Inapoi la Lista", "Index")
+</div>

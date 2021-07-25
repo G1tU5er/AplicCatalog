@@ -1,0 +1,73 @@
+﻿@model IEnumerable<AplicCatalog.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Adaugare Utilizator", "Create")
+</p>
+<div style="height: 200px; overflow: auto;">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Valid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataActivareCont)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataExpirareCont)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.LockoutEnabled)
+            </th>
+
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Valid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataActivareCont)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataExpirareCont)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.LockoutEnabled)
+                </td>
+
+
+                <td>
+                    @Html.ActionLink("Modifica", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Sterge", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+    </div>

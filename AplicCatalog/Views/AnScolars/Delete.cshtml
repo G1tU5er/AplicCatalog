@@ -1,0 +1,40 @@
+﻿@model AplicCatalog.Models.AnScolar
+
+@{
+    ViewBag.Title = "Stergere";
+}
+
+<h2>Stergere</h2>
+
+<h3>Sigur doresti sa stergi?</h3>
+<div>
+    <h4>AnScolar</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.InceputAnScolar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InceputAnScolar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SfarsitAnScolar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SfarsitAnScolar)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-actions no-color">
+            <input type="submit" value="Stergere" class="btn btn-default" /> |
+            @Html.ActionLink("Inapoi la Lista", "Index")
+        </div>
+    }
+</div>

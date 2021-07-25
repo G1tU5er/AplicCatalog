@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Catalog Online Scolar</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Catalog Scolar Online", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <ul class="nav navbar-nav">
+             
+                <li><a href="@Url.Action("Index", "Catalogs")" class="elements"><span>Catalog</span></a> </li>
+              
+            </ul>
+            @Html.Partial("_LoginPartial")
+        </div>
+
+    </div>
+    <div class="container body-content">
+        <table border="0" font-family:Arial" class="table">
+            <tr>
+                <td style="width:500px">
+                    <div class="expandContent">
+                        <a href="#">Administrare</a>
+                    </div>
+                    <div class="showMe" style="display:none">
+
+
+                        <ul>
+                            <li> <a href="@Url.Action("Index", "Materies")" class="elements" target="mainContent"> Administrare Materii </a></li>
+                            <li> <a href="@Url.Action("Index", "Clasas")" class="elements" target="mainContent"> Administrare Clase </a></li>
+                            <li> <a href="@Url.Action("Index", "AnScolars")" class="elements" target="mainContent"> Administrare Ani Scolari </a></li>
+                            <li> <a href="@Url.Action("Index", "Elevs")" class="elements"target="mainContent"> Administrare Elevi </a></li>
+                            <li> <a href="@Url.Action("Index", "PlanInvatamants")" class="elements" target="mainContent"> Administrare Planuri de Invatamant </a></li>
+                            <li> <a href="@Url.Action("Index", "Profesors")" class="elements" target="mainContent"> Administrare Profesori </a></li>
+                            <li> <a href="@Url.Action("Index", "ApplicationUsers")" class="elements" target="mainContent"> Administrare Utilizatori </a></li>
+
+
+                        </ul>
+                    </div>
+                    @Html.ActionLink("Incadrari Profesori", "Index", "IncadrareProfs")
+                    <br />
+                    @Html.ActionLink("Incadrari Elevi", "Index", "Incadrares")
+                    <br />
+                    @Html.ActionLink("Incadrari Diriginte", "Index", "IncadrareDirigintes")
+                </td>
+                <td style="width:1300px">@RenderBody()</td>
+               </tr>
+            <tr>
+                <td colspan="2" style="text-align:center" font-size:x-small"><footer>
+                                 <p>&copy; @DateTime.Now.Year - Catalog Scolar</p>
+                    </footer></td>
+            </tr>
+        </table>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/datetime")
+
+
+    @RenderSection("scripts", required: false)
+
+    <script>
+
+    $('.expandContent').click(function(){
+        $('.showMe').toggle();
+    });
+    </script>
+   
+   
+</body>
+</html>
+

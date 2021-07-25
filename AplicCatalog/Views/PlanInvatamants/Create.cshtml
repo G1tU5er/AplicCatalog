@@ -1,0 +1,83 @@
+﻿@model AplicCatalog.Models.PlanInvatamant
+
+@{
+    ViewBag.Title = "Administrare Plan Invatamant";
+}
+
+<h2>Administrare Plan Invatamant</h2>
+
+
+@using (Html.BeginForm(null,null,FormMethod.Post)) 
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>PlanInvatamant</h4>
+        <hr />
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nume, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Nume, new { htmlAttributes = new { @class = "form-control" } })
+               </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.NrClasa, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NrClasa, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("An Scolar", new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                 @Html.DropDownListFor(Model=> Model.AnScolar.IdAn, new SelectList(ViewBag.listaAni,"IdAn","InceputAnScolar"), "Selecteaza anul scolar")
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <table>
+                    <tr>
+                        @{
+                            int cnt = 0;
+                            List<AplicCatalog.viewModel.MaterieAsignata> materii = ViewBag.Materii;
+
+
+                            foreach (var materie in materii)
+                            {
+                                if (cnt++ % 3 == 0)
+                                {
+                                    @:</tr><tr>
+                                 }
+                                @:<td>
+                                    <input type="checkbox"
+                                           name="selectedMaterii"
+                                           value="@materie.IdMaterie"
+                                           @(Html.Raw(materie.asignat ? "checked=\"checked\"" : "")) />
+                                         @materie.NumeMaterie
+                                        @:</td>
+                    }
+                            @:</tr>
+                        }
+                    </table>
+                </div>
+            </div>
+
+            
+       
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+       
+                <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Adauga" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Inapoi la Lista", "Index")
+</div>
+
+@section Scripts {
+   
+    @Scripts.Render("~/bundles/jqueryval")
+}

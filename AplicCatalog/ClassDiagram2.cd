@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AplicCatalog.Models.AnScolar">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAACAAAAAAAAAAABABAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\AnScolar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AplicCatalog.Models.Catalog">
+    <Position X="4.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAgAQAAAAAAAAFAgUAAAIAA=</HashCode>
+      <FileName>Models\Catalog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AplicCatalog.Models.Clasa">
+    <Position X="3.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAgAAAAAAAABAAAAEAAAEAAAAAAAACAAAQAAAAAAA=</HashCode>
+      <FileName>Models\Clasa.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AplicCatalog.Models.Elev">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAEAAAAAAAAAAAAAAAAAAAAAFAAAIAAAAAA=</HashCode>
+      <FileName>Models\Elev.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AplicCatalog.Models.Incadrare">
+    <Position X="1.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQIAAAAIAAABAAAAAAIAAAAAAAAAAAAAAAQAEAAAA=</HashCode>
+      <FileName>Models\Incadrare.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AplicCatalog.Models.IncadrareDiriginte">
+    <Position X="9" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAJAAAAAAAAAAAAAAAQBAAAAA=</HashCode>
+      <FileName>Models\IncadrareDiriginte.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AplicCatalog.Models.IncadrareMateriePlan" Collapsed="true">
+    <Position X="8.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAQAAAAAEAQAAAAAAAAAAgBAAgAAA=</HashCode>
+      <FileName>Models\IncadrareMateriePlan.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AplicCatalog.Models.IncadrareProf" Collapsed="true">
+    <Position X="9.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAABAAAAAAJAAAQAAAAAAAAAAAQBAAIAA=</HashCode>
+      <FileName>Models\IncadrareProf.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AplicCatalog.Models.Materie" Collapsed="true">
+    <Position X="9.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACBAAAAAAAAAAAAAAAAAAAAAAAAAgCBEAAAA=</HashCode>
+      <FileName>Models\Materie.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AplicCatalog.Models.PlanInvatamant">
+    <Position X="7" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAABAAAAAAAAEABAAAAAAABAAQAAAAAAA=</HashCode>
+      <FileName>Models\PlanInvatamant.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AplicCatalog.Models.Profesor">
+    <Position X="5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAAABAAAAAAABAAAAAAAAQA=</HashCode>
+      <FileName>Models\Profesor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

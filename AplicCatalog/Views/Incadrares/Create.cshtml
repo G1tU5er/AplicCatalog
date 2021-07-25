@@ -1,0 +1,81 @@
+﻿@model AplicCatalog.Models.Incadrare
+
+@{
+    ViewBag.Title = "Incadrare Elev";
+}
+<script src="~/Scripts/jquery-1.12.4.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#checkBoxAll').click(function () {
+            if ($(this).is(":checked"))
+                $('.chkCheckBoxId').prop('checked', true);
+            else
+                $('.chkCheckBoxId').prop('checked', false);
+        });
+    });
+</script>
+<h2>Incadrare Elev</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Clasa.IdClasa)
+    <div class="form-horizontal">
+       
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+        
+            @Html.Label("Nume Clasa", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Clasa.NumeClasa, new { id = "NumeClasa", @readonly = "readonly" } )
+              
+            </div>
+        </div>
+        <div class="form-group" style="height: 200px; overflow: auto;">
+         
+                <table>
+                    <tr>
+                        <th>
+                            <input type="checkbox" id="checkBoxAll" />
+                        </th>
+                        <th>
+                            Nume
+                        </th>
+                        <th>
+                            Prenume
+                        </th>
+                    </tr>
+                    @foreach (var elev in ViewBag.listaElevi)
+                    {
+                        <tr>
+                            <td>
+                                <input type="checkbox" class="chkCheckBoxId" value="@elev.IdElev" name="eleviSelectati" />
+                            </td>
+                            <td>
+                                @elev.Nume
+                            </td>
+                            <td>
+                                @elev.Prenume
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Adauga" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+}
+
+<div>
+    @Html.ActionLink("Inapoi la Lista", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

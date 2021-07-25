@@ -1,0 +1,213 @@
+﻿@model AplicCatalog.Models.CatalogIndexData
+
+@{
+    ViewBag.Title = "Catalog";
+}
+
+<h2>Catalog</h2>
+
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+   @if (Model.Clase != null && (Model.Clase.Count() > 0))
+    {
+    <div class="form-group">
+        <div class="col-md-10">
+            @using (Html.BeginForm("Index", "Catalogs", FormMethod.Post))
+            {
+                @Html.Label("Nume Clasa", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.Editor("NumeClasa", new { htmlAttributes = new { id = "NumeClasa", name = "NumeClasa" } })
+
+                @Html.DropDownList("Mylist", new SelectList(ViewBag.listaAni, "IdAn", "InceputAnScolar"))
+
+                <input type="submit" value="Cauta Clasa" />
+            }
+
+        </div>
+    </div>
+    <br />
+    <br />
+
+    <div style="height: 200px; overflow: auto;">
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayName("NumeClasa")
+                </th>
+                <th>
+                    @Html.DisplayName("Descriere")
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model.Clase)
+            {
+                string selectedRow = "";
+                if (item.IdClasa == ViewBag.IdClasa)
+                {
+                    selectedRow = "success";
+
+                }
+                <tr class="@selectedRow">
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumeClasa)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descriere)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Detalii", "Index", new { id = item.IdClasa })
+
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    if (Model.AnScolar != null)
+    {
+        <h3>Anul asignat clasei</h3>
+        <table class="table">
+            <tr>
+                <th>Inceput An Scolar</th>
+                <th>Sfarsit An Scolar</th>
+
+            </tr>
+            <tr>
+                <td>
+                    @Model.AnScolar.InceputAnScolar
+                </td>
+                <td>
+                    @Model.AnScolar.SfarsitAnScolar
+                </td>
+
+            </tr>
+
+
+        </table>
+    }
+    if (Model.Elevi != null)
+    {
+        <h3>Elevii asignati clasei sunt:</h3>
+        <div style="height: 200px; overflow: auto;">
+            <table class="table">
+                <tr>
+                    <th>Nume</th>
+                    <th>Prenume</th>
+                    <th>Nume Tata</th>
+                    <th>Nume Mama</th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model.Elevi)
+                {
+
+                    <tr>
+                        <td>
+                            @item.Nume
+                        </td>
+                        <td>
+                            @item.Prenume
+                        </td>
+                        <td>
+                            @item.Tata
+                        </td>
+                        <td>
+                            @item.Mama
+                        </td>
+                        <td> @Html.ActionLink("Vizualizare Materii si Note", "Index", new { idElev = item.IdElev, id = ViewBag.IdClasa })</td>
+
+                    </tr>
+                }
+
+            </table>
+        </div>
+    }
+    if (Model.Materii != null)
+    {
+        <h3>Materiile asignate clasei sunt:</h3>
+                <div style="height: 200px; overflow: auto;">
+                    <table class="table">
+                        <tr>
+                            <th>Nume Materie</th>
+                            <th>Comentariu</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+
+                        @foreach (var item in Model.Materii)
+                        {
+
+                            <tr>
+                                <td>
+                                    @item.NumeMaterie
+                                </td>
+                                <td>
+                                    @item.Comentariu
+                                </td>
+                             
+                                @if (Model.ListIdMateriiAsignate != null && Model.ListIdMateriiAsignate.Count() > 0 && Model.ListIdMateriiAsignate.Contains(item.IdMaterie))
+                                {  <td>
+                                    @Html.ActionLink("Adauga Note", "Create", new { idClasa = ViewBag.IdClasa, idMaterie = item.IdMaterie, idElev = ViewBag.IdElev })
+                                </td>
+
+                                <td> @Html.ActionLink("Adauga absenta", "AdaugaAbsenta", new { idMaterie = item.IdMaterie, idClasa = ViewBag.IdClasa, idElev = ViewBag.IdElev })</td>
+                                }
+                                else { <td></td><td></td>}
+                              
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+    }
+    if (Model.Note != null)
+    {
+        <h3>Notele elevului @ViewBag.NumeElev sunt:</h3>
+                        <div style="height: 200px; overflow: auto;">
+                            <table class="table">
+                                <tr>
+                                    <th>Nume Materie</th>
+                                    <th>Nota</th>
+                                    <th>Data Nota</th>
+                                    <th>Data Absenta</th>
+                                    <th>Absenta Motivata</th>
+                                    <th></th>
+                                </tr>
+
+                                @foreach (var item in Model.Note)
+                                {
+
+                                    <tr>
+                                        <td>
+                                            @item.Materie.NumeMaterie
+                                        </td>
+                                        <td>
+                                            @item.Nota
+                                        </td>
+                                        <td>
+                                            @item.DataNota
+                                        </td>
+                                        <td>
+                                            @item.DataAbsenta
+                                        </td>
+                                       
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.AbsentaMotivata)
+                                        
+                                        </td>
+                                    
+                                        @if (Model.EDiriginte != null && Model.EDiriginte.Count() > 0 && item.AbsentaMotivata==false && item.DataAbsenta!=null)
+                                        {
+                                        <td> @Html.ActionLink("Motiveaza absenta", "MotiveazaAbsenta", new { idNota=item.IdNota })</td>
+                                        }
+
+
+                                    </tr>
+                                }
+
+                            </table>
+                        </div>
+    }
+    }
+
+
+

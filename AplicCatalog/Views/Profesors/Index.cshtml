@@ -1,0 +1,68 @@
+﻿@model AplicCatalog.Models.ProfesorIndexData
+
+@{
+    ViewBag.Title = "Administrare Profesori";
+}
+
+<h2>Administrare Profesori</h2>
+<div style="height: 200px; overflow: auto;">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Email")
+            </th>
+            <th>
+                @Html.DisplayName("Nume Profesor")
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Profesori)
+        {
+            string selectedRow = "";
+            if (item.IdProfesor == ViewBag.IdProfesor)
+            {
+                selectedRow = "success";
+            }
+            <tr class="@selectedRow">
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.user.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nume)
+                </td>
+
+
+                <td>
+                    @Html.ActionLink("Detalii", "Index", new { id = item.IdProfesor }) |
+                    @Html.ActionLink("Adauga Materii", "Create", new { id = item.IdProfesor }) |
+                    @Html.ActionLink("Modifica Materii/Nume Profesor", "Edit", new { id = item.IdProfesor })
+
+                </td>
+            </tr>
+        }
+
+    </table>
+    </div>
+    @if (Model.Materii != null)
+    {
+        <h3>Materiile asignate profesorului:</h3>
+        <table class="table">
+            <tr>
+                <th>Nume Materie</th>
+                </tr>
+
+            @foreach (var item in Model.Materii)
+            {
+
+                <tr>
+                    <td>
+                        @item.NumeMaterie
+                    </td>
+                  
+                </tr>
+            }
+
+        </table>
+    }

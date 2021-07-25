@@ -1,0 +1,117 @@
+﻿@model AplicCatalog.Models.IncadrareDirigData
+
+@{
+    ViewBag.Title = "Incadrari Diriginte";
+}
+
+<h2>Incadrari Diriginte pe clase</h2>
+
+<p>
+    <div class="form-group">
+        <div class="col-md-10">
+            @using (Html.BeginForm("Index", "IncadrareDirigintes", FormMethod.Post))
+            {
+                @Html.Label("Nume Clasa", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                @Html.Editor("NumeClasa", new { htmlAttributes = new { id = "NumeClasa", name = "NumeClasa" } })
+
+                @Html.DropDownList("Mylist", new SelectList(ViewBag.listaAni, "IdAn", "InceputAnScolar"))
+
+                <input type="submit" value="Cauta Clasa" />
+            }
+
+        </div>
+    </div>
+    <br />
+    <br />
+</p>
+<div style="height: 200px; overflow: auto;">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("NumeClasa")
+            </th>
+            <th>
+                @Html.DisplayName("Descriere")
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Clase)
+        {
+            string selectedRow = "";
+            if (item.IdClasa == ViewBag.IdClasa)
+            {
+                selectedRow = "success";
+
+            }
+            <tr class="@selectedRow">
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumeClasa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descriere)
+                </td>
+                <td>
+                    @Html.ActionLink("Detalii", "Index", new { id = item.IdClasa })
+                </td>
+                @if (Model.ClaseCuDiriginte == null || (Model.ClaseCuDiriginte.Count() == 0) || (!Model.ClaseCuDiriginte.Contains(item.IdClasa)))
+                {
+                <td>
+                    @Html.ActionLink("Adauga Diriginte", "AdaugaDirig", new { idClasa = item.IdClasa })
+                </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.ActionLink("Sterge Diriginte", "Delete", new { idClasa = item.IdClasa })
+                    </td>
+                }
+            </tr>
+        }
+    </table>
+</div>
+
+@if (Model.AnScolar != null)
+{
+    <h3>Anul asignat clasei</h3>
+        <table class="table">
+            <tr>
+                <th>Inceput An Scolar</th>
+                <th>Sfarsit An Scolar</th>
+
+            </tr>
+            <tr>
+                <td>
+                    @Model.AnScolar.InceputAnScolar
+                </td>
+                <td>
+                    @Model.AnScolar.SfarsitAnScolar
+                </td>
+
+            </tr>
+
+
+        </table>
+}
+
+@if (Model.Profesor != null)
+            {
+    <h3>Dirigintele asignat clasei e :</h3>
+                <div>
+                    <table class="table">
+                        <tr>
+                            <th>Nume</th>
+                        </tr>
+                           <tr>
+                                <td>
+                                    @Model.Profesor.Nume
+                                </td>
+                           </tr>
+                    </table>
+                </div>
+}
+
+

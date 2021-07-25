@@ -1,0 +1,116 @@
+﻿@model AplicCatalog.Models.PlanIndexData
+
+@{
+    ViewBag.Title = "Administrare Plan Invatamant";
+}
+
+<h2>Administrare Plan Invatamant</h2>
+
+<p>
+    @Html.ActionLink("Adaugare", "Create")
+</p>
+<div style="height: 200px; overflow: auto;">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Nume")
+            </th>
+            <th>
+                @Html.DisplayName("Numar Clasa")
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.planuriScolare)
+        {
+            string selectedRow = "";
+            if (item.IdPlan == ViewBag.IdPlan)
+            {
+                selectedRow = "success";
+            }
+            <tr class="@selectedRow">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nume)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NrClasa)
+                </td>
+                <td>
+                    @Html.ActionLink("Detalii", "Index", new { id = item.IdPlan }) |
+                    @Html.ActionLink("Modifica", "Edit", new { id = item.IdPlan }) |
+                    @Html.ActionLink("Sterge", "Delete", new { id = item.IdPlan })
+                </td>
+            </tr>
+        }
+
+    </table>
+    </div>
+@if (Model.anScolar != null)
+            {
+    <h3>Anul asignat planului de invatamant</h3>
+                <table class="table">
+                    <tr>
+                        <th>Inceput An Scolar</th>
+                        <th>Sfarsit An Scolar</th>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            @Model.anScolar.InceputAnScolar
+                        </td>
+                        <td>
+                            @Model.anScolar.SfarsitAnScolar
+                        </td>
+
+                    </tr>
+
+
+                </table>
+}
+
+
+    @if (Model.materii != null)
+    {
+        <h3>Materiile asignate planului de invatamant</h3>
+        <div style="height: 200px; overflow: auto;">
+            <table class="table">
+                <tr>
+                    <th>Nume Materie</th>
+                    <th>Nr de Ore</th>
+                    <th></th>
+                  
+                </tr>
+
+                @foreach (var item in Model.materii)
+                {
+
+                    <tr>
+                        <td>
+                            @item.NumeMaterie
+                        </td>
+                        
+                            @if (Model.IncadrariNrOreMaterii.ContainsKey(item.IdMaterie))
+                            {
+                                <td>
+                                    @Model.IncadrariNrOreMaterii[item.IdMaterie]
+                                </td>
+
+                            }
+                            else
+                            {
+                                <td></td>
+                            }
+
+
+                       <td>
+                           @Html.ActionLink("Adauga Nr de Ore", "AdaugaNrOre", new { id = item.IdMaterie, idPlan= ViewBag.IdPlan }) |
+                           @Html.ActionLink("Modifica Nr de Ore", "ModificaNrOre", new { id = item.IdMaterie, idPlan= ViewBag.IdPlan }) 
+                       </td>
+                    </tr>
+                }
+
+            </table>
+            </div>
+            }
+           

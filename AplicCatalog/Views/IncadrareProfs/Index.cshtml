@@ -1,0 +1,155 @@
+﻿@model AplicCatalog.Models.IncadrareProfData
+
+@{
+    ViewBag.Title = "Incadrari Profesori";
+}
+
+<h2>Incadrari Profesori pe clase</h2>
+
+<p>
+    <div class="form-group">
+        <div class="col-md-10">
+            @using (Html.BeginForm("Index", "IncadrareProfs", FormMethod.Post))
+            {
+                @Html.Label("Nume Clasa", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                @Html.Editor("NumeClasa", new { htmlAttributes = new { id = "NumeClasa", name = "NumeClasa" } })
+
+                @Html.DropDownList("Mylist", new SelectList(ViewBag.listaAni, "IdAn", "InceputAnScolar"))
+
+                <input type="submit" value="Cauta Clasa" />
+            }
+
+        </div>
+    </div>
+    <br />
+    <br />
+</p>
+<div style="height: 200px; overflow: auto;">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("NumeClasa")
+            </th>
+            <th>
+                @Html.DisplayName("Descriere")
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Clase)
+        {
+            string selectedRow = "";
+            if (item.IdClasa == ViewBag.IdClasa)
+            {
+                selectedRow = "success";
+
+            }
+            <tr class="@selectedRow">
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumeClasa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descriere)
+                </td>
+                <td>
+                    @Html.ActionLink("Detalii", "Index", new { id = item.IdClasa })
+                </td>
+            
+            </tr>
+        }
+    </table>
+    </div>
+
+    @if (Model.AnScolar != null)
+    {
+        <h3>Anul asignat clasei</h3>
+        <table class="table">
+            <tr>
+                <th>Inceput An Scolar</th>
+                <th>Sfarsit An Scolar</th>
+
+            </tr>
+            <tr>
+                <td>
+                    @Model.AnScolar.InceputAnScolar
+                </td>
+                <td>
+                    @Model.AnScolar.SfarsitAnScolar
+                </td>
+
+            </tr>
+
+
+        </table>
+    }
+    @if (Model.Materii != null)
+    {
+        <h3>Materiile asignate clasei sunt:</h3>
+        <div style="height: 200px; overflow: auto;">
+            <table class="table">
+                <tr>
+                    <th>Nume Materie</th>
+                    <th>Comentariu</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model.Materii)
+                {
+
+                    <tr>
+                        <td>
+                            @item.NumeMaterie
+                        </td>
+                        <td>
+                            @item.Comentariu
+                        </td>
+                      
+                        @if (Model.listIdMaterie != null && Model.listIdMaterie.Contains(item.IdMaterie))
+                        {
+                        <td> @Html.ActionLink("Sterge Profesor", "Delete", new { idMaterie = item.IdMaterie, idClasa = ViewBag.IdClasa })</td>
+                        }
+                        else
+                        {
+                            <td>
+                                @Html.ActionLink("Adauga Profesor", "Create", new { idClasa = ViewBag.IdClasa, idMaterie = item.IdMaterie })
+                            </td>
+                        }
+                    </tr>
+                }
+
+            </table>
+            </div>
+            }
+            @if (Model.Profesori != null)
+            {
+                <h3>Profesorii asignati clasei sunt:</h3>
+                <div style="height: 200px; overflow: auto;">
+                    <table class="table">
+                        <tr>
+                            <th>Nume</th>
+                            <th>Materie</th>
+
+                        </tr>
+
+                        @foreach (var item in Model.Profesori)
+                        {
+
+                            <tr>
+                                <td>
+                                    @item.Nume
+                                </td>
+                                <td>
+                                    @item.Materii.First().NumeMaterie
+                                </td>
+
+
+                            </tr>
+                        }
+
+                    </table>
+                    </div>
+                    }

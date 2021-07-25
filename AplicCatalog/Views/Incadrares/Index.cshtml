@@ -1,0 +1,143 @@
+﻿@model AplicCatalog.Models.IncadrareIndexData
+
+@{
+    ViewBag.Title = "Incadrari Elevi";
+}
+
+<h2>Incadrari Elevi pe clase</h2>
+
+<div class="form-group">
+    <div class="col-md-10">
+        @using (Html.BeginForm("Index", "Incadrares", FormMethod.Post))
+        {
+            @Html.Label("Nume Clasa", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Editor("NumeClasa", new { htmlAttributes = new { id = "NumeClasa", name = "NumeClasa" } })
+
+            @Html.DropDownList("Mylist", new SelectList(ViewBag.listaAni, "IdAn", "InceputAnScolar"))
+
+            <input type="submit" value="Cauta Clasa" />
+        }
+
+    </div>
+</div>
+<br />
+<br />
+<div style="height: 200px; overflow: auto;">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Nume Clasa")
+            </th>
+            <th>
+                @Html.DisplayName("Numar Clasa")
+            </th>
+            <th>
+                @Html.DisplayName("Descriere")
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Clase)
+        {
+            string selectedRow = "";
+            if (item.IdClasa == ViewBag.IdClasa)
+            {
+                selectedRow = "success";
+
+            }
+            <tr class="@selectedRow">
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumeClasa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NrClasa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descriere)
+                </td>
+                <td>
+                    @Html.ActionLink("Detalii", "Index", new { id = item.IdClasa }) |
+                    @Html.ActionLink("Export Elevi", "ExportElevi", new { id = item.IdClasa, nrClasa= item.NrClasa }) |
+                    @Html.ActionLink("Adauga Elev", "Create", new { id = item.IdClasa })
+                    @using (Html.BeginForm("ExportFile", "Incadrares", FormMethod.Post))
+
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <input type="hidden" name="idClasaVechi" id="idClasaVechi" value="@item.IdClasa">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Exporta csv" class="btn btn-default" />
+                        </div>
+
+                    }
+
+                </td>
+            </tr>
+        }
+    </table>
+
+</div>
+
+
+@if (Model.anScolar != null)
+{
+    <h3>Anul asignat clasei</h3>
+    <table class="table">
+        <tr>
+            <th>Inceput An Scolar</th>
+            <th>Sfarsit An Scolar</th>
+          
+        </tr>
+        <tr>
+            <td>
+                @Model.anScolar.InceputAnScolar
+            </td>
+            <td>
+                @Model.anScolar.SfarsitAnScolar
+            </td>
+
+          </tr>
+
+
+    </table>
+}
+@if (Model.Elevi != null)
+{
+    <h3>Elevii asignati clasei sunt:</h3>
+    <div style="height: 200px; overflow: auto;">
+        <table class="table">
+            <tr>
+                <th>Nume</th>
+                <th>Prenume</th>
+                <th>Nume Tata</th>
+                <th>Nume Mama</th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model.Elevi)
+            {
+
+                <tr>
+                    <td>
+                        @item.Nume
+                    </td>
+                    <td>
+                        @item.Prenume
+                    </td>
+                    <td>
+                        @item.Tata
+                    </td>
+                    <td>
+                        @item.Mama
+                    </td>
+                    <td> @Html.ActionLink("Sterge", "Delete", new { idElev = item.IdElev, idClasa = ViewBag.IdClasa })</td>
+
+                </tr>
+            }
+
+        </table>
+        </div>
+        }
+
+

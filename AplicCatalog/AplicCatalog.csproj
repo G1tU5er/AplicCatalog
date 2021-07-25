@@ -1,0 +1,992 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BD6B6895-387D-401B-ACDF-905335A493CE}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AplicCatalog</RootNamespace>
+    <AssemblyName>AplicCatalog</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Glimpse.AspNet, Version=1.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Glimpse.AspNet.1.8.0\lib\net45\Glimpse.AspNet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Glimpse.Core, Version=1.8.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Glimpse.1.8.2\lib\net45\Glimpse.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Glimpse.Mvc5, Version=1.5.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Glimpse.Mvc5.1.5.3\lib\net45\Glimpse.Mvc5.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.0.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.0.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.0.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.0.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.0.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.0.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.EntityFrameworkCore, Version=1.0.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.EntityFrameworkCore.1.0.1\lib\net451\Microsoft.EntityFrameworkCore.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Caching.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Caching.Abstractions.1.0.0\lib\netstandard1.0\Microsoft.Extensions.Caching.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Caching.Memory, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Caching.Memory.1.0.0\lib\net451\Microsoft.Extensions.Caching.Memory.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.1.0.0\lib\netstandard1.1\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.1.0.0\lib\netstandard1.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.1.0.0\lib\netstandard1.1\Microsoft.Extensions.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.1.0.0\lib\netstandard1.1\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Options.1.0.0\lib\netstandard1.0\Microsoft.Extensions.Options.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.1.0.0\lib\netstandard1.0\Microsoft.Extensions.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Remotion.Linq, Version=2.1.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Remotion.Linq.2.1.1\lib\net45\Remotion.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Collections.Immutable, Version=1.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\System.Collections.Immutable.1.2.0\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Interactive.Async, Version=3.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Interactive.Async.3.0.0\lib\net45\System.Interactive.Async.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AnScolarsController.cs" />
+    <Compile Include="Controllers\ApplicationUsersController.cs" />
+    <Compile Include="Controllers\CatalogsController.cs" />
+    <Compile Include="Controllers\ClasasController.cs" />
+    <Compile Include="Controllers\ElevsController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IncadrareDirigintesController.cs" />
+    <Compile Include="Controllers\IncadrareProfsController.cs" />
+    <Compile Include="Controllers\IncadraresController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MateriesController.cs" />
+    <Compile Include="Controllers\PlanInvatamantsController.cs" />
+    <Compile Include="Controllers\ProfesorsController.cs" />
+    <Compile Include="GlimpseSecurityPolicy.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711151836062_create.cs" />
+    <Compile Include="Migrations\201711151836062_create.Designer.cs">
+      <DependentUpon>201711151836062_create.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711151854001_test users.cs" />
+    <Compile Include="Migrations\201711151854001_test users.Designer.cs">
+      <DependentUpon>201711151854001_test users.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711151921149_test user2.cs" />
+    <Compile Include="Migrations\201711151921149_test user2.Designer.cs">
+      <DependentUpon>201711151921149_test user2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711161906132_add column to profesor.cs" />
+    <Compile Include="Migrations\201711161906132_add column to profesor.Designer.cs">
+      <DependentUpon>201711161906132_add column to profesor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711202000085_update table.cs" />
+    <Compile Include="Migrations\201711202000085_update table.Designer.cs">
+      <DependentUpon>201711202000085_update table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711251538539_remove scoala.cs" />
+    <Compile Include="Migrations\201711251538539_remove scoala.Designer.cs">
+      <DependentUpon>201711251538539_remove scoala.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711251542103_update lungime coloana permisiune.cs" />
+    <Compile Include="Migrations\201711251542103_update lungime coloana permisiune.Designer.cs">
+      <DependentUpon>201711251542103_update lungime coloana permisiune.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711261222509_add plan invatamant.cs" />
+    <Compile Include="Migrations\201711261222509_add plan invatamant.Designer.cs">
+      <DependentUpon>201711261222509_add plan invatamant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711261815423_add planinvatamantupdate.cs" />
+    <Compile Include="Migrations\201711261815423_add planinvatamantupdate.Designer.cs">
+      <DependentUpon>201711261815423_add planinvatamantupdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711300904321_remove nrmaxabsente.cs" />
+    <Compile Include="Migrations\201711300904321_remove nrmaxabsente.Designer.cs">
+      <DependentUpon>201711300904321_remove nrmaxabsente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711301218134_update planinvatamant.cs" />
+    <Compile Include="Migrations\201711301218134_update planinvatamant.Designer.cs">
+      <DependentUpon>201711301218134_update planinvatamant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712010953328_dropdownlistsave.cs" />
+    <Compile Include="Migrations\201712010953328_dropdownlistsave.Designer.cs">
+      <DependentUpon>201712010953328_dropdownlistsave.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712011016252_updateplaninvatam.cs" />
+    <Compile Include="Migrations\201712011016252_updateplaninvatam.Designer.cs">
+      <DependentUpon>201712011016252_updateplaninvatam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712011225530_test2.cs" />
+    <Compile Include="Migrations\201712011225530_test2.Designer.cs">
+      <DependentUpon>201712011225530_test2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712011302078_updateplan.cs" />
+    <Compile Include="Migrations\201712011302078_updateplan.Designer.cs">
+      <DependentUpon>201712011302078_updateplan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712011427438_updatean.cs" />
+    <Compile Include="Migrations\201712011427438_updatean.Designer.cs">
+      <DependentUpon>201712011427438_updatean.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712011435049_updatean2.cs" />
+    <Compile Include="Migrations\201712011435049_updatean2.Designer.cs">
+      <DependentUpon>201712011435049_updatean2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712011512478_update1.cs" />
+    <Compile Include="Migrations\201712011512478_update1.Designer.cs">
+      <DependentUpon>201712011512478_update1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712041833505_repairplantables.cs" />
+    <Compile Include="Migrations\201712041833505_repairplantables.Designer.cs">
+      <DependentUpon>201712041833505_repairplantables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712081257315_refactor classes.cs" />
+    <Compile Include="Migrations\201712081257315_refactor classes.Designer.cs">
+      <DependentUpon>201712081257315_refactor classes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712101253077_update plan1.cs" />
+    <Compile Include="Migrations\201712101253077_update plan1.Designer.cs">
+      <DependentUpon>201712101253077_update plan1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712131836044_remove required materii.cs" />
+    <Compile Include="Migrations\201712131836044_remove required materii.Designer.cs">
+      <DependentUpon>201712131836044_remove required materii.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712131850584_add prenume elev.cs" />
+    <Compile Include="Migrations\201712131850584_add prenume elev.Designer.cs">
+      <DependentUpon>201712131850584_add prenume elev.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712131854478_update elev.cs" />
+    <Compile Include="Migrations\201712131854478_update elev.Designer.cs">
+      <DependentUpon>201712131854478_update elev.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712191214249_test nume.cs" />
+    <Compile Include="Migrations\201712191214249_test nume.Designer.cs">
+      <DependentUpon>201712191214249_test nume.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802171244233_add idmaterie.cs" />
+    <Compile Include="Migrations\201802171244233_add idmaterie.Designer.cs">
+      <DependentUpon>201802171244233_add idmaterie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802171335538_addidmat2.cs" />
+    <Compile Include="Migrations\201802171335538_addidmat2.Designer.cs">
+      <DependentUpon>201802171335538_addidmat2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802201240506_testmateriiupdate.cs" />
+    <Compile Include="Migrations\201802201240506_testmateriiupdate.Designer.cs">
+      <DependentUpon>201802201240506_testmateriiupdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802210938177_add anscolar.cs" />
+    <Compile Include="Migrations\201802210938177_add anscolar.Designer.cs">
+      <DependentUpon>201802210938177_add anscolar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802211210416_rollbackidan.cs" />
+    <Compile Include="Migrations\201802211210416_rollbackidan.Designer.cs">
+      <DependentUpon>201802211210416_rollbackidan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802211213023_update idan.cs" />
+    <Compile Include="Migrations\201802211213023_update idan.Designer.cs">
+      <DependentUpon>201802211213023_update idan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803041510466_add idanforeignkey.cs" />
+    <Compile Include="Migrations\201803041510466_add idanforeignkey.Designer.cs">
+      <DependentUpon>201803041510466_add idanforeignkey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803041549532_modify anscolar.cs" />
+    <Compile Include="Migrations\201803041549532_modify anscolar.Designer.cs">
+      <DependentUpon>201803041549532_modify anscolar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803100835232_remove virtual idan.cs" />
+    <Compile Include="Migrations\201803100835232_remove virtual idan.Designer.cs">
+      <DependentUpon>201803100835232_remove virtual idan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803101115468_remove required permisiune.cs" />
+    <Compile Include="Migrations\201803101115468_remove required permisiune.Designer.cs">
+      <DependentUpon>201803101115468_remove required permisiune.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803131300250_make valid checkbox.cs" />
+    <Compile Include="Migrations\201803131300250_make valid checkbox.Designer.cs">
+      <DependentUpon>201803131300250_make valid checkbox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803151605589_repair db.cs" />
+    <Compile Include="Migrations\201803151605589_repair db.Designer.cs">
+      <DependentUpon>201803151605589_repair db.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803201247518_add anscolarupdate.cs" />
+    <Compile Include="Migrations\201803201247518_add anscolarupdate.Designer.cs">
+      <DependentUpon>201803201247518_add anscolarupdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803221830269_add idplan.cs" />
+    <Compile Include="Migrations\201803221830269_add idplan.Designer.cs">
+      <DependentUpon>201803221830269_add idplan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804040756041_disable cascade3.cs" />
+    <Compile Include="Migrations\201804040756041_disable cascade3.Designer.cs">
+      <DependentUpon>201804040756041_disable cascade3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804041208387_disable cascade4.cs" />
+    <Compile Include="Migrations\201804041208387_disable cascade4.Designer.cs">
+      <DependentUpon>201804041208387_disable cascade4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804051105112_set parinte prop.cs" />
+    <Compile Include="Migrations\201804051105112_set parinte prop.Designer.cs">
+      <DependentUpon>201804051105112_set parinte prop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804180716238_test21.cs" />
+    <Compile Include="Migrations\201804180716238_test21.Designer.cs">
+      <DependentUpon>201804180716238_test21.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804180754543_add tiputilizator.cs" />
+    <Compile Include="Migrations\201804180754543_add tiputilizator.Designer.cs">
+      <DependentUpon>201804180754543_add tiputilizator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804181121300_modifydbcontext.cs" />
+    <Compile Include="Migrations\201804181121300_modifydbcontext.Designer.cs">
+      <DependentUpon>201804181121300_modifydbcontext.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804190825385_add incadrare2.cs" />
+    <Compile Include="Migrations\201804190825385_add incadrare2.Designer.cs">
+      <DependentUpon>201804190825385_add incadrare2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804190916513_add inc2.cs" />
+    <Compile Include="Migrations\201804190916513_add inc2.Designer.cs">
+      <DependentUpon>201804190916513_add inc2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804191146572_test3.cs" />
+    <Compile Include="Migrations\201804191146572_test3.Designer.cs">
+      <DependentUpon>201804191146572_test3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804191250142_removeids.cs" />
+    <Compile Include="Migrations\201804191250142_removeids.Designer.cs">
+      <DependentUpon>201804191250142_removeids.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804191724535_removetata.cs" />
+    <Compile Include="Migrations\201804191724535_removetata.Designer.cs">
+      <DependentUpon>201804191724535_removetata.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804251050152_removepar2.cs" />
+    <Compile Include="Migrations\201804251050152_removepar2.Designer.cs">
+      <DependentUpon>201804251050152_removepar2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804271814259_test4.cs" />
+    <Compile Include="Migrations\201804271814259_test4.Designer.cs">
+      <DependentUpon>201804271814259_test4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804300829072_remove orar.cs" />
+    <Compile Include="Migrations\201804300829072_remove orar.Designer.cs">
+      <DependentUpon>201804300829072_remove orar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805021446415_setidsincadrare.cs" />
+    <Compile Include="Migrations\201805021446415_setidsincadrare.Designer.cs">
+      <DependentUpon>201805021446415_setidsincadrare.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805030806111_add incadrare prof.cs" />
+    <Compile Include="Migrations\201805030806111_add incadrare prof.Designer.cs">
+      <DependentUpon>201805030806111_add incadrare prof.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805030813563_dropidanfromincadrareprof.cs" />
+    <Compile Include="Migrations\201805030813563_dropidanfromincadrareprof.Designer.cs">
+      <DependentUpon>201805030813563_dropidanfromincadrareprof.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805031058411_set linktomatandprof.cs" />
+    <Compile Include="Migrations\201805031058411_set linktomatandprof.Designer.cs">
+      <DependentUpon>201805031058411_set linktomatandprof.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805051102340_testeee.cs" />
+    <Compile Include="Migrations\201805051102340_testeee.Designer.cs">
+      <DependentUpon>201805051102340_testeee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805091459383_test1.cs" />
+    <Compile Include="Migrations\201805091459383_test1.Designer.cs">
+      <DependentUpon>201805091459383_test1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805091550187_modifcatalog.cs" />
+    <Compile Include="Migrations\201805091550187_modifcatalog.Designer.cs">
+      <DependentUpon>201805091550187_modifcatalog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805101749045_test5.cs" />
+    <Compile Include="Migrations\201805101749045_test5.Designer.cs">
+      <DependentUpon>201805101749045_test5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805121408364_updatecatalog.cs" />
+    <Compile Include="Migrations\201805121408364_updatecatalog.Designer.cs">
+      <DependentUpon>201805121408364_updatecatalog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805121527589_update catalog3.cs" />
+    <Compile Include="Migrations\201805121527589_update catalog3.Designer.cs">
+      <DependentUpon>201805121527589_update catalog3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805261044202_add dirig prop.cs" />
+    <Compile Include="Migrations\201805261044202_add dirig prop.Designer.cs">
+      <DependentUpon>201805261044202_add dirig prop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805271043117_add incadraredirig.cs" />
+    <Compile Include="Migrations\201805271043117_add incadraredirig.Designer.cs">
+      <DependentUpon>201805271043117_add incadraredirig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805291222018_removenrore.cs" />
+    <Compile Include="Migrations\201805291222018_removenrore.Designer.cs">
+      <DependentUpon>201805291222018_removenrore.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805291224378_renameid.cs" />
+    <Compile Include="Migrations\201805291224378_renameid.Designer.cs">
+      <DependentUpon>201805291224378_renameid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805300830165_add column nrclasa.cs" />
+    <Compile Include="Migrations\201805300830165_add column nrclasa.Designer.cs">
+      <DependentUpon>201805300830165_add column nrclasa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AnScolar.cs" />
+    <Compile Include="Models\Catalog.cs" />
+    <Compile Include="Models\CatalogIndexData.cs" />
+    <Compile Include="Models\Clasa.cs" />
+    <Compile Include="Models\ClasaIndexData.cs" />
+    <Compile Include="Models\Elev.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Incadrare.cs" />
+    <Compile Include="Models\IncadrareDirigData.cs" />
+    <Compile Include="Models\IncadrareDiriginte.cs" />
+    <Compile Include="Models\IncadrareIndexData.cs" />
+    <Compile Include="Models\IncadrareMateriePlan.cs" />
+    <Compile Include="Models\IncadrareProf.cs" />
+    <Compile Include="Models\IncadrareProfData.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Materie.cs" />
+    <Compile Include="Models\PlanInvatamant.cs" />
+    <Compile Include="Models\Profesor.cs" />
+    <Compile Include="Models\ProfesorIndexData.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="Models\PlanIndexData.cs" />
+    <Compile Include="viewModel\MaterieAsignata.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\themes\base\accordion.css" />
+    <Content Include="Content\themes\base\all.css" />
+    <Content Include="Content\themes\base\autocomplete.css" />
+    <Content Include="Content\themes\base\base.css" />
+    <Content Include="Content\themes\base\button.css" />
+    <Content Include="Content\themes\base\core.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
+    <Content Include="Content\themes\base\dialog.css" />
+    <Content Include="Content\themes\base\draggable.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\menu.css" />
+    <Content Include="Content\themes\base\progressbar.css" />
+    <Content Include="Content\themes\base\resizable.css" />
+    <Content Include="Content\themes\base\selectable.css" />
+    <Content Include="Content\themes\base\selectmenu.css" />
+    <Content Include="Content\themes\base\slider.css" />
+    <Content Include="Content\themes\base\sortable.css" />
+    <Content Include="Content\themes\base\spinner.css" />
+    <Content Include="Content\themes\base\tabs.css" />
+    <Content Include="Content\themes\base\theme.css" />
+    <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\ai.0.22.9-build00167.js" />
+    <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ClassDiagram1.cd" />
+    <Content Include="ClassDiagram2.cd" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\PlanInvatamants\Create.cshtml" />
+    <Content Include="Views\PlanInvatamants\Delete.cshtml" />
+    <Content Include="Views\PlanInvatamants\Edit.cshtml" />
+    <Content Include="Views\PlanInvatamants\Index.cshtml" />
+    <Content Include="Views\AnScolars\Create.cshtml" />
+    <Content Include="Views\AnScolars\Delete.cshtml" />
+    <Content Include="Views\AnScolars\Edit.cshtml" />
+    <Content Include="Views\AnScolars\Index.cshtml" />
+    <Content Include="Views\Materies\Create.cshtml" />
+    <Content Include="Views\Materies\Delete.cshtml" />
+    <Content Include="Views\Materies\Edit.cshtml" />
+    <Content Include="Views\Materies\Index.cshtml" />
+    <Content Include="Views\Clasas\Create.cshtml" />
+    <Content Include="Views\Clasas\Delete.cshtml" />
+    <Content Include="Views\Clasas\Edit.cshtml" />
+    <Content Include="Views\Clasas\Index.cshtml" />
+    <Content Include="Views\ApplicationUsers\Create.cshtml" />
+    <Content Include="Views\ApplicationUsers\Delete.cshtml" />
+    <Content Include="Views\ApplicationUsers\Edit.cshtml" />
+    <Content Include="Views\ApplicationUsers\Index.cshtml" />
+    <Content Include="Views\Elevs\Create.cshtml" />
+    <Content Include="Views\Elevs\Delete.cshtml" />
+    <Content Include="Views\Elevs\Edit.cshtml" />
+    <Content Include="Views\Elevs\Index.cshtml" />
+    <Content Include="Views\Incadrares\Create.cshtml" />
+    <Content Include="Views\Incadrares\Delete.cshtml" />
+    <Content Include="Views\Incadrares\Index.cshtml" />
+    <Content Include="Views\Incadrares\Export.cshtml" />
+    <Content Include="Views\IncadrareProfs\Create.cshtml" />
+    <Content Include="Views\IncadrareProfs\Delete.cshtml" />
+    <Content Include="Views\IncadrareProfs\Index.cshtml" />
+    <Content Include="Views\Profesors\Create.cshtml" />
+    <Content Include="Views\Profesors\Edit.cshtml" />
+    <Content Include="Views\Profesors\Index.cshtml" />
+    <Content Include="Views\Incadrares\ExportElevi.cshtml" />
+    <Content Include="Views\Catalogs\Create.cshtml" />
+    <Content Include="Views\Catalogs\Delete.cshtml" />
+    <Content Include="Views\Catalogs\Index.cshtml" />
+    <Content Include="Views\Catalogs\AdaugaAbsenta.cshtml" />
+    <Content Include="Views\IncadrareDirigintes\AdaugaDirig.cshtml" />
+    <Content Include="Views\IncadrareDirigintes\Delete.cshtml" />
+    <Content Include="Views\IncadrareDirigintes\Index.cshtml" />
+    <Content Include="Views\Catalogs\MotiveazaAbsenta.cshtml" />
+    <Content Include="Views\PlanInvatamants\AdaugaNrOre.cshtml" />
+    <Content Include="Views\PlanInvatamants\ModificaNrOre.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="DataMapper\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201711151836062_create.resx">
+      <DependentUpon>201711151836062_create.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711151854001_test users.resx">
+      <DependentUpon>201711151854001_test users.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711151921149_test user2.resx">
+      <DependentUpon>201711151921149_test user2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711161906132_add column to profesor.resx">
+      <DependentUpon>201711161906132_add column to profesor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711202000085_update table.resx">
+      <DependentUpon>201711202000085_update table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711251538539_remove scoala.resx">
+      <DependentUpon>201711251538539_remove scoala.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711251542103_update lungime coloana permisiune.resx">
+      <DependentUpon>201711251542103_update lungime coloana permisiune.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711261222509_add plan invatamant.resx">
+      <DependentUpon>201711261222509_add plan invatamant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711261815423_add planinvatamantupdate.resx">
+      <DependentUpon>201711261815423_add planinvatamantupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711300904321_remove nrmaxabsente.resx">
+      <DependentUpon>201711300904321_remove nrmaxabsente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711301218134_update planinvatamant.resx">
+      <DependentUpon>201711301218134_update planinvatamant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712010953328_dropdownlistsave.resx">
+      <DependentUpon>201712010953328_dropdownlistsave.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712011016252_updateplaninvatam.resx">
+      <DependentUpon>201712011016252_updateplaninvatam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712011225530_test2.resx">
+      <DependentUpon>201712011225530_test2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712011302078_updateplan.resx">
+      <DependentUpon>201712011302078_updateplan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712011427438_updatean.resx">
+      <DependentUpon>201712011427438_updatean.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712011435049_updatean2.resx">
+      <DependentUpon>201712011435049_updatean2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712011512478_update1.resx">
+      <DependentUpon>201712011512478_update1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712041833505_repairplantables.resx">
+      <DependentUpon>201712041833505_repairplantables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712081257315_refactor classes.resx">
+      <DependentUpon>201712081257315_refactor classes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712101253077_update plan1.resx">
+      <DependentUpon>201712101253077_update plan1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712131836044_remove required materii.resx">
+      <DependentUpon>201712131836044_remove required materii.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712131850584_add prenume elev.resx">
+      <DependentUpon>201712131850584_add prenume elev.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712131854478_update elev.resx">
+      <DependentUpon>201712131854478_update elev.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712191214249_test nume.resx">
+      <DependentUpon>201712191214249_test nume.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802171244233_add idmaterie.resx">
+      <DependentUpon>201802171244233_add idmaterie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802171335538_addidmat2.resx">
+      <DependentUpon>201802171335538_addidmat2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802201240506_testmateriiupdate.resx">
+      <DependentUpon>201802201240506_testmateriiupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802210938177_add anscolar.resx">
+      <DependentUpon>201802210938177_add anscolar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802211210416_rollbackidan.resx">
+      <DependentUpon>201802211210416_rollbackidan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802211213023_update idan.resx">
+      <DependentUpon>201802211213023_update idan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803041510466_add idanforeignkey.resx">
+      <DependentUpon>201803041510466_add idanforeignkey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803041549532_modify anscolar.resx">
+      <DependentUpon>201803041549532_modify anscolar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803100835232_remove virtual idan.resx">
+      <DependentUpon>201803100835232_remove virtual idan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803101115468_remove required permisiune.resx">
+      <DependentUpon>201803101115468_remove required permisiune.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803131300250_make valid checkbox.resx">
+      <DependentUpon>201803131300250_make valid checkbox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803151605589_repair db.resx">
+      <DependentUpon>201803151605589_repair db.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803201247518_add anscolarupdate.resx">
+      <DependentUpon>201803201247518_add anscolarupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803221830269_add idplan.resx">
+      <DependentUpon>201803221830269_add idplan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804040756041_disable cascade3.resx">
+      <DependentUpon>201804040756041_disable cascade3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804041208387_disable cascade4.resx">
+      <DependentUpon>201804041208387_disable cascade4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804051105112_set parinte prop.resx">
+      <DependentUpon>201804051105112_set parinte prop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804180716238_test21.resx">
+      <DependentUpon>201804180716238_test21.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804180754543_add tiputilizator.resx">
+      <DependentUpon>201804180754543_add tiputilizator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804181121300_modifydbcontext.resx">
+      <DependentUpon>201804181121300_modifydbcontext.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804190825385_add incadrare2.resx">
+      <DependentUpon>201804190825385_add incadrare2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804190916513_add inc2.resx">
+      <DependentUpon>201804190916513_add inc2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804191146572_test3.resx">
+      <DependentUpon>201804191146572_test3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804191250142_removeids.resx">
+      <DependentUpon>201804191250142_removeids.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804191724535_removetata.resx">
+      <DependentUpon>201804191724535_removetata.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804251050152_removepar2.resx">
+      <DependentUpon>201804251050152_removepar2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804271814259_test4.resx">
+      <DependentUpon>201804271814259_test4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804300829072_remove orar.resx">
+      <DependentUpon>201804300829072_remove orar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805021446415_setidsincadrare.resx">
+      <DependentUpon>201805021446415_setidsincadrare.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805030806111_add incadrare prof.resx">
+      <DependentUpon>201805030806111_add incadrare prof.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805030813563_dropidanfromincadrareprof.resx">
+      <DependentUpon>201805030813563_dropidanfromincadrareprof.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805031058411_set linktomatandprof.resx">
+      <DependentUpon>201805031058411_set linktomatandprof.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805051102340_testeee.resx">
+      <DependentUpon>201805051102340_testeee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805091459383_test1.resx">
+      <DependentUpon>201805091459383_test1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805091550187_modifcatalog.resx">
+      <DependentUpon>201805091550187_modifcatalog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805101749045_test5.resx">
+      <DependentUpon>201805101749045_test5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805121408364_updatecatalog.resx">
+      <DependentUpon>201805121408364_updatecatalog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805121527589_update catalog3.resx">
+      <DependentUpon>201805121527589_update catalog3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805261044202_add dirig prop.resx">
+      <DependentUpon>201805261044202_add dirig prop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805271043117_add incadraredirig.resx">
+      <DependentUpon>201805271043117_add incadraredirig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805291222018_removenrore.resx">
+      <DependentUpon>201805291222018_removenrore.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805291224378_renameid.resx">
+      <DependentUpon>201805291224378_renameid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805300830165_add column nrclasa.resx">
+      <DependentUpon>201805300830165_add column nrclasa.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>8911</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:12168/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

@@ -1,0 +1,82 @@
+﻿@model AplicCatalog.Models.ClasaIndexData
+@{
+    ViewBag.Title = "Administrare Clase";
+}
+
+<h2>Administrare Clase</h2>
+
+<p>
+    @Html.ActionLink("Adauga Clasa", "Create")
+</p>
+<div style="height: 200px; overflow: auto;">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Nume")
+            </th>
+            <th>
+                @Html.DisplayName("Numar clasa")
+            </th>
+            <th>
+                @Html.DisplayName("Descriere")
+            </th>
+
+            <th>
+                @Html.DisplayName("Plan de Invatamant")
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.clase)
+        {
+
+            string selectedRow = "";
+            if (item.IdClasa == ViewBag.IdClasa)
+            {
+                selectedRow = "success";
+            }
+            <tr class="@selectedRow">
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumeClasa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NrClasa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descriere)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PlanDeInvatamant.Nume)
+                </td>
+                <td>
+                    @Html.ActionLink("Detalii", "Index", new { id = item.IdClasa }) |
+                    @Html.ActionLink("Modifica", "Edit", new { id = item.IdClasa }) |
+                    @Html.ActionLink("Sterge", "Delete", new { id = item.IdClasa })
+                </td>
+            </tr>
+        }
+
+    </table>
+    </div>
+    @if (Model.anScolar != null)
+    {
+        <h3>Anul asignat planului de invatamant</h3>
+        <table class="table">
+            <tr>
+                <th>Inceput An Scolar</th>
+                <th>Sfarsit An Scolar</th>
+
+            </tr>
+            <tr>
+                <td>
+                    @Model.anScolar.InceputAnScolar
+                </td>
+                <td>
+                    @Model.anScolar.SfarsitAnScolar
+                </td>
+
+            </tr>
+
+
+        </table>
+    }

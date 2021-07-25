@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Export";
+}
+
+<h2>Export</h2>
+<div class="form-group">
+    <div class="col-md-10">
+        @using (Html.BeginForm("ExportFile", "Incadrares", FormMethod.Post))
+
+        {
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="idClasaVechi" id="idClasaVechi" value="@ViewBag.IdClasa">
+            @Html.DropDownList("MylistClase", new SelectList(ViewBag.listaClase, "IdClasa", "NumeClasa"))
+
+            @Html.DropDownList("MylistAni", new SelectList(ViewBag.listaAni, "IdAn", "InceputAnScolar"))
+            <input type="submit" value="Exporta" />
+        }
+
+    </div>
+</div>
+

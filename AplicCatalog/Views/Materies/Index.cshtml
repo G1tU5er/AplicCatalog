@@ -1,0 +1,43 @@
+﻿@model IEnumerable<AplicCatalog.Models.Materie>
+
+@{
+    ViewBag.Title = "Administrare Materii";
+}
+
+<h2>Administrare Materii</h2>
+
+<p>
+    @Html.ActionLink("Adauga Materie", "Create")
+</p>
+<div style="height: 200px; overflow: auto;">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NumeMaterie)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comentariu)
+            </th>
+        
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumeMaterie)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comentariu)
+                </td>
+              
+                <td>
+                    @Html.ActionLink("Modifica", "Edit", new { id = item.IdMaterie }) |
+                    @Html.ActionLink("Sterge", "Delete", new { id = item.IdMaterie })
+                </td>
+            </tr>
+        }
+
+    </table>
+    </div>
